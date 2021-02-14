@@ -1,0 +1,38 @@
+﻿@page "/polynomial"
+
+@inject IJSRuntime Js;
+
+<h3>Polynomial Function</h3>
+
+<div class="form-group">
+  <label for="a">a</label>
+  <input @bind="a" type="number" class="form-control" id="a" aria-describedby="aHelp" />
+  <small id="aHelp" class="form-text text-muted">y = <b>ax<sup>2</sup></b> + bx + c</small>
+</div>
+
+<div class="form-group">
+  <label for="b">b</label>
+  <input @bind="b" type="number" class="form-control" id="b" aria-describedby="bHelp" />
+  <small id="bHelp" class="form-text text-muted">y = ax<sup>2</sup> + <b>bx</b> + c</small>
+</div>
+
+<div class="form-group">
+  <label for="c">c</label>
+  <input @bind="c" type="number" class="form-control" id="c" aria-describedby="cHelp" />
+  <small id="cHelp" class="form-text text-muted">y = ax<sup>2</sup> + bx + <b>c</b></small>
+</div>
+
+<button class="btn btn-dark">Plot</button>
+
+<div id="container"></div>
+
+@code {
+  private int a;
+  private int b;
+  private int c;
+
+  protected override async Task OnInitializedAsync()
+  {
+    await Js.InvokeAsync<object>("createStage", new object[0]);
+  }
+}
